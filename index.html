@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Security Update</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background-color 1s, color 1s;
+            padding: 20px;
+        }
+        #intro {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        #startButton {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .reviews {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .review {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .review .user {
+            font-weight: bold;
+        }
+        .review .comment {
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .terminal {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid green;
+            background-color: black;
+            color: green;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em;
+            display: none; /* Hidden by default */
+            overflow: hidden; /* Ensure no scrolling */
+        }
+        .message {
+            margin-bottom: 20px;
+            white-space: pre-wrap; /* Allows wrapping */
+        }
+        .dots::after {
+            content: '...';
+            display: inline-block;
+            animation: blink 1s infinite steps(1, start);
+        }
+        .fixed-dots::after {
+            content: '...';
+        }
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="intro">
+        <h1>Important Security Update</h1>
+        <p>Please click the button below to start the update process.</p>
+        <button id="startButton">Start Update</button>
+        <div class="reviews">
+            <div class="review">
+                <div class="user">John D.</div>
+                <div class="comment">"This update significantly improved my system's performance. Highly recommended!"</div>
+            </div>
+            <div class="review">
+                <div class="user">Emma W.</div>
+                <div class="comment">"A must-have update for security reasons. Made my computer feel brand new!"</div>
+            </div>
+            <div class="review">
+                <div class="user">David K.</div>
+                <div class="comment">"Easy to install and works great. No issues so far!"</div>
+            </div>
+        </div>
+    </div>
+    <div class="terminal">
+        <div id="messages"></div>
+    </div>
+    <script>
+        const messages = [
+            "Initializing System Update",
+            "Reading System Files",
+            "Password files Detected",
+            "Sending files to remote server",
+            "Accessing webcam and microphone",
+            "Monitoring location in real-time",
+            "Encrypting hard drive data",
+            "Deleting system files",
+            "Overloading memory",
+            "Injecting malware",
+            "Complete. Goodbye!",
+            "System shutting down...",
+            "Your computer will self-destruct in 30 minutes.",
+            "Downloading critical data",
+            "Rebooting system",
+            "Erasing hard drive",
+            "Injecting ransomware",
+            "Compromising network security",
+            "Exploiting vulnerabilities",
+            "Finalizing attack"
+        ];
+
+        let index = 0;
+
+        function typeMessage(message, container, callback) {
+            let i = 0;
+            function typeChar() {
+                if (i < message.length) {
+                    container.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeChar, 50); // Typing speed (50ms per character)
+                } else {
+                    if (callback) callback();
+                }
+            }
+            typeChar();
+        }
+
+        function showNextMessage() {
+            if (index < messages.length) {
+                const messageContainer = document.getElementById('messages');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message';
+                messageContainer.appendChild(newMessage);
+
+                typeMessage(messages[index], newMessage, () => {
+                    // Add blinking dots after the message is fully typed
+                    const dots = document.createElement('span');
+                    dots.className = 'dots';
+                    newMessage.appendChild(dots);
+
+                    setTimeout(() => {
+                        dots.className = 'fixed-dots';
+                    }, 2000); // Stops blinking after 2 seconds
+
+                    index++;
+                    const delay = Math.floor(Math.random() * 2000) + 1000; // Random delay between 1 to 3 seconds
+                    setTimeout(showNextMessage, delay);
+                });
+            } else {
+                setTimeout(clearMessages, 3000); // Clear messages after 3 seconds delay
+            }
+        }
+
+        function clearMessages() {
+            const messageContainer = document.getElementById('messages');
+            messageContainer.innerHTML = "<div class='message'>All data has been erased<span class='dots'></span></div>";
+        }
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            document.getElementById('intro').style.display = 'none';
+            document.body.style.backgroundColor = 'black';
+            document.body.style.color = 'green';
+            document.querySelector('.terminal').style.display = 'block';
+            setTimeout(showNextMessage, 1000); // Start after 1 second
+        });
+    </script>
+</body>
+</html>
