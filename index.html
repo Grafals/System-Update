@@ -113,16 +113,14 @@
             "Password files Detected",
             "Sending files to remote server",
             "Accessing webcam and microphone",
-            "Monitoring location in real-time",
+            "Checking location",
             "Encrypting hard drive data",
             "Deleting system files",
             "Overloading memory",
             "Injecting malware",
-            "Complete. Goodbye!",
             "System shutting down...",
-            "Your computer will self-destruct in 30 minutes.",
+            "Your device software may self-destruct in 30 minutes.",
             "Downloading critical data",
-            "Rebooting system",
             "Erasing hard drive",
             "Injecting ransomware",
             "Compromising network security",
@@ -175,6 +173,9 @@
         function clearMessages() {
             const messageContainer = document.getElementById('messages');
             messageContainer.innerHTML = "<div class='message'>All data has been erased<span class='dots'></span></div>";
+            setTimeout(() => {
+                messageContainer.innerHTML = "<div class='message'>Its a Joke OK<span class='dots'></span></div>"
+            }, 2000)
         }
 
         document.getElementById('startButton').addEventListener('click', () => {
